@@ -29,7 +29,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-               sh 'scp target/MavenAnsibleWebApp.war root@vamshika:/path/to/tomcat/webapps/'
+               sh 'mvn clean package'  
+               sh 'ansible-playbook ansible/playbook.yml -i ansible/hosts.ini'
             }
         }
 
